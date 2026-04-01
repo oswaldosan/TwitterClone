@@ -1,4 +1,5 @@
-# Writter
+# Writter<img width="264" height="210" alt="writterlogo" src="https://github.com/user-attachments/assets/c2ec5798-f514-43d9-88a2-39750bf92f71" />
+
 
 Social feed app: **Laravel 12**, **Inertia v2**, **React 18**, **Tailwind**, **MySQL 8**. Timeline with infinite scroll, posts (rich text), images, Klipy stickers, likes, replies, follows, notifications, search.
 
