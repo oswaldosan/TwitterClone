@@ -171,6 +171,12 @@ Copy `.env.example` → `.env`. Do not commit `.env`.
 
 ---
 
+## screenshots
+<img width="677" height="446" alt="image" src="https://github.com/user-attachments/assets/74caf746-49fd-46f4-a703-1da0965cf4a4" />
+
+<img width="671" height="528" alt="image" src="https://github.com/user-attachments/assets/f376ef4f-d7c9-4bf7-bc66-291dd5684651" />
+
+
 ## License
 
 MIT (unless otherwise specified).
