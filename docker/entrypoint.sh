@@ -20,16 +20,22 @@ if [ ! -d node_modules ]; then
     npm ci
 fi
 
-echo "Waiting for MySQL at ${DB_HOST:-mysql}..."
+# Read DB connection values directly from .env so this script is self-contained.
+_db_host=$(grep '^DB_HOST=' .env | head -1 | cut -d'=' -f2-)
+_db_port=$(grep '^DB_PORT=' .env | head -1 | cut -d'=' -f2-)
+_db_user=$(grep '^DB_USERNAME=' .env | head -1 | cut -d'=' -f2-)
+_db_pass=$(grep '^DB_PASSWORD=' .env | head -1 | cut -d'=' -f2-)
+_db_host=${_db_host:-mysql}
+_db_port=${_db_port:-3306}
+_db_user=${_db_user:-writter}
+_db_pass=${_db_pass:-}
+
+echo "Waiting for MySQL at ${_db_host}:${_db_port}..."
 i=0
 while [ "$i" -lt 60 ]; do
     if php -r "
         try {
-            \$host = getenv('DB_HOST') ?: 'mysql';
-            \$port = getenv('DB_PORT') ?: '3306';
-            \$user = getenv('DB_USERNAME') ?: 'writter';
-            \$pass = getenv('DB_PASSWORD') ?: '';
-            new PDO('mysql:host='.\$host.';port='.\$port, \$user, \$pass);
+            new PDO('mysql:host=${_db_host};port=${_db_port}', '${_db_user}', '${_db_pass}');
             exit(0);
         } catch (Exception \$e) {
             exit(1);
@@ -42,6 +48,9 @@ while [ "$i" -lt 60 ]; do
     sleep 2
 done
 
+php artisan config:clear
+echo "Linking public/storage..."
+php artisan storage:link --force
 php artisan migrate --force
 
 echo "Starting Vite and Laravel (Vite :5173, app :8000)..."

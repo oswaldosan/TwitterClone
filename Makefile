@@ -1,11 +1,8 @@
-.PHONY: up down build
+.PHONY: dev dev-local install test
 
-# Levanta MySQL + app (Vite :5173, Laravel :8000). Prerrequisito: Docker.
-up:
+# Full stack in Docker (MySQL + Laravel :8000 + Vite :5173) — single command
+dev:
 	docker compose up --build
 
-down:
-	docker compose down
-
-build:
-	docker compose build
+dev-local:
+	composer install && npm ci && composer dev

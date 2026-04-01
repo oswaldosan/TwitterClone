@@ -1,0 +1,9 @@
+# Railway picks Dockerfile.production for builds.
+# Docs: https://docs.railway.com/deploy/dockerfiles
+
+[build]
+dockerfilePath = "Dockerfile.production"
+
+[deploy]
+healthcheckPath = "/up"
+restartPolicyType = "on_failure"

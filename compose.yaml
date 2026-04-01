@@ -9,7 +9,8 @@ services:
       MYSQL_PASSWORD: writter_secret
       MYSQL_ROOT_PASSWORD: writter_root
     ports:
-      - "3306:3306"
+      # Host 3307 si 3306 ya está en uso (MySQL local, otro contenedor, etc.)
+      - "3307:3306"
     volumes:
       - writter_mysql_data:/var/lib/mysql
     healthcheck:
@@ -35,12 +36,6 @@ services:
       APP_ENV: local
       APP_DEBUG: "true"
       APP_URL: http://localhost:8000
-      DB_CONNECTION: mysql
-      DB_HOST: mysql
-      DB_PORT: "3306"
-      DB_DATABASE: writter
-      DB_USERNAME: writter
-      DB_PASSWORD: writter_secret
       VITE_APP_NAME: Writter
       VITE_DEV_SERVER_URL: http://localhost:5173
     depends_on:
