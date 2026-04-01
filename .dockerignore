@@ -1,0 +1,17 @@
+.git
+.gitignore
+node_modules
+vendor
+.env
+.env.backup
+.phpunit.result.cache
+storage/logs/*
+!storage/logs/.gitignore
+bootstrap/cache/*
+!bootstrap/cache/.gitignore
+public/build
+public/hot
+*.md
+!README.md
+.idea
+.vscode
